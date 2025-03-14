@@ -31,7 +31,7 @@ class MinkowskiGRN(nn.Module):
         Nx_per_batch = Gx_per_batch / (Gx_per_batch.mean(dim=-1, keepdim=True) + 1e-6)
         out_feat = x.F + self.gamma * (x.F * Nx_per_batch[batch_index]) + self.beta
 
-        out = ME.SparseTensor(
+        out = SparseTensor(
             features=out_feat,
             coordinate_manager=x.coordinate_manager,
             coordinate_map_key=x.coordinate_map_key
